@@ -1,0 +1,7 @@
+/home/abhinav/Dev/Logica/.mono/temp/bin/Debug/Logica.dll
+/home/abhinav/Dev/Logica/.mono/temp/bin/Debug/Logica.pdb
+/home/abhinav/Dev/Logica/.mono/temp/obj/Debug/Logica.csprojAssemblyReference.cache
+/home/abhinav/Dev/Logica/.mono/temp/obj/Debug/Logica.AssemblyInfoInputs.cache
+/home/abhinav/Dev/Logica/.mono/temp/obj/Debug/Logica.AssemblyInfo.cs
+/home/abhinav/Dev/Logica/.mono/temp/obj/Debug/Logica.dll
+/home/abhinav/Dev/Logica/.mono/temp/obj/Debug/Logica.pdb

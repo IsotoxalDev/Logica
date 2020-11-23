@@ -1,0 +1,50 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/abhinav/Dev/Logica/Logica.csproj": {}
+  },
+  "projects": {
+    "/home/abhinav/Dev/Logica/Logica.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/abhinav/Dev/Logica/Logica.csproj",
+        "projectName": "Logica",
+        "projectPath": "/home/abhinav/Dev/Logica/Logica.csproj",
+        "packagesPath": "/home/abhinav/.nuget/packages/",
+        "outputPath": "/home/abhinav/Dev/Logica/.mono/temp/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/abhinav/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "dependencies": {
+            "Microsoft.NETFramework.ReferenceAssemblies": {
+              "target": "Package",
+              "version": "[1.0.0, )",
+              "autoReferenced": true
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.108/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
