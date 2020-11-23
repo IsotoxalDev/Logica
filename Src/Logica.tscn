@@ -1,17 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Assets/Righteous-Regular.ttf" type="DynamicFontData" id=1]
-
-[sub_resource type="StyleBoxFlat" id=5]
-draw_center = false
-
-[sub_resource type="StyleBoxFlat" id=4]
-draw_center = false
-
-[sub_resource type="DynamicFont" id=3]
-size = 30
-use_filter = true
-font_data = ExtResource( 1 )
+[ext_resource path="res://Assets/GodotPowered.png" type="Texture" id=1]
+[ext_resource path="res://Src/RightMenu.tscn" type="PackedScene" id=2]
 
 [node name="Logica" type="Control"]
 anchor_right = 1.0
@@ -28,38 +18,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RightMenu" type="ColorRect" parent="."]
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -269.0
-color = Color( 0.0470588, 0.0470588, 0.0470588, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="RightMenu" parent="." instance=ExtResource( 2 )]
 
-[node name="LineEdit" type="LineEdit" parent="."]
-margin_left = 1011.0
-margin_right = 1280.0
-margin_bottom = 48.0
-rect_pivot_offset = Vector2( -37.183, 68.1101 )
-custom_styles/focus = SubResource( 5 )
-custom_styles/normal = SubResource( 4 )
-custom_fonts/font = SubResource( 3 )
-custom_colors/selection_color = Color( 0.956863, 0.384314, 0.384314, 1 )
-custom_colors/cursor_color = Color( 0.956863, 0.384314, 0.384314, 1 )
-align = 1
-placeholder_text = "SEARCH"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ColorRect" type="ColorRect" parent="LineEdit"]
+[node name="TextureRect" type="TextureRect" parent="."]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = 1.0
-color = Color( 1, 0.317647, 0.317647, 1 )
+margin_left = 799.0
+margin_top = -86.0
+margin_right = -270.0
+margin_bottom = -1.0
+texture = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
