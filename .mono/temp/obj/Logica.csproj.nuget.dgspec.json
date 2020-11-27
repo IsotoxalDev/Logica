@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/abhinav/Dev/Logica/Logica.csproj": {}
+    "/home/abhi/Dev/Logica/Logica.csproj": {}
   },
   "projects": {
-    "/home/abhinav/Dev/Logica/Logica.csproj": {
+    "/home/abhi/Dev/Logica/Logica.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/abhinav/Dev/Logica/Logica.csproj",
+        "projectUniqueName": "/home/abhi/Dev/Logica/Logica.csproj",
         "projectName": "Logica",
-        "projectPath": "/home/abhinav/Dev/Logica/Logica.csproj",
-        "packagesPath": "/home/abhinav/.nuget/packages/",
-        "outputPath": "/home/abhinav/Dev/Logica/.mono/temp/obj/",
+        "projectPath": "/home/abhi/Dev/Logica/Logica.csproj",
+        "packagesPath": "/home/abhi/.nuget/packages/",
+        "outputPath": "/home/abhi/Dev/Logica/.mono/temp/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/abhinav/.nuget/NuGet/NuGet.Config"
+          "/home/abhi/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net472"
