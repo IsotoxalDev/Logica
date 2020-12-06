@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Src/Scripts/CanvasRightClickMenu.cs" type="Script" id=1]
+
+[node name="CanvasRightClickMenu" type="PopupMenu"]
+margin_right = 97.0
+margin_bottom = 20.0
+focus_mode = 1
+hide_on_checkable_item_selection = false
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

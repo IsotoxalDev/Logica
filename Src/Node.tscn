@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Src/IONode.cs" type="Script" id=1]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec2 aspect;
+
+float circle(in vec2 _st, in float _radius){
+    vec2 dist = _st - vec2(aspect / 2.0);
+    return 1.0 - smoothstep(_radius-(_radius*0.01),
+                         _radius+(_radius*0.2),
+                         dot(dist,dist)*4.0);
+}
+
+void fragment(){
+    vec2 st = UV * aspect;
+
+    vec4 color = vec4(circle(st, 0.8));
+
+    COLOR = vec4(color);
+}
+"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/aspect = Vector2( 1, 1 )
+
+[node name="IONode" type="ColorRect"]
+material = SubResource( 2 )
+margin_right = 50.0
+margin_bottom = 50.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="resized" from="." to="." method="RectChanged"]

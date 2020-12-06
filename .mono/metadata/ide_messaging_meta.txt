@@ -1,2 +1,2 @@
-﻿45383
-/home/abhi/Bin/Godot Mono/Godot_v3.2.3-stable_mono_x11.64
+﻿46569
+/home/abhi/.bin/Godot Mono/Godot_v3.2.3-stable_mono_x11.64

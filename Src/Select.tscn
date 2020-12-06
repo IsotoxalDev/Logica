@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Src/Scripts/Select.cs" type="Script" id=1]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec2 mousepos;
+
+void vertex()
+{
+    VERTEX = VERTEX * mousepos;
+   }"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/mousepos = Vector2( 5, 5 )
+
+[node name="Select" type="ColorRect"]
+visible = false
+material = SubResource( 2 )
+margin_right = 1.0
+margin_bottom = 1.0
+rect_scale = Vector2( 40, 40 )
+color = Color( 0.0509804, 0.0509804, 0.0509804, 0.898039 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
