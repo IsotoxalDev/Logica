@@ -3,7 +3,7 @@
 [ext_resource path="res://Assets/Righteous-Regular.ttf" type="DynamicFontData" id=1]
 
 [sub_resource type="DynamicFont" id=1]
-size = 25
+size = 26
 use_filter = true
 font_data = ExtResource( 1 )
 
@@ -18,10 +18,10 @@ __meta__ = {
 }
 
 [node name="LineEdit" type="LineEdit" parent="."]
-margin_left = -0.561279
-margin_top = 1.12247
-margin_right = 370.439
-margin_bottom = 43.1225
+margin_left = -1.0
+margin_top = 1.0
+margin_right = 370.0
+margin_bottom = 48.0
 rect_pivot_offset = Vector2( -37.183, 68.1101 )
 custom_fonts/font = SubResource( 1 )
 custom_colors/selection_color = Color( 0.956863, 0.384314, 0.384314, 1 )
@@ -36,7 +36,9 @@ __meta__ = {
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = 1.0
+margin_top = -7.0
+margin_right = 3.05176e-05
+margin_bottom = -4.0
 color = Color( 1, 0.317647, 0.317647, 1 )
 __meta__ = {
 "_edit_use_anchors_": false

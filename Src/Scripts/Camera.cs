@@ -9,6 +9,8 @@ public class Camera : Godot.Camera2D
 
     private Vector2 minZoom = new Vector2(0.1f, 0.1f); //Minimum threshold for zooming
     private Vector2 maxZoom = new Vector2(1.5f, 1.5f); //Maximum threshold for zooming
+    private Vector2 minPan = new Vector2(-20000, 20000);
+    private Vector2 maxPan = new Vector2(20000, -20000);
 
     public override void _Ready()//_Ready function
     {
@@ -37,13 +39,18 @@ public class Camera : Godot.Camera2D
         {
             //Setting newEvent to event by explicitly convertong it to Input Event Mouse Motion
             InputEventMouseMotion NewEvent = (InputEventMouseMotion) Event;
-            Offset -= NewEvent.Relative * Zoom; //Setting offset relative to the mouse motion
+            Vector2 toMove = NewEvent.Relative * Zoom;
+            Vector2 afterOffset = Offset - toMove;
+
+            if (afterOffset.x > minPan.x && afterOffset.x < maxPan.x)
+            if (afterOffset.y < minPan.y && afterOffset.y > maxPan.y)
+                Offset -= toMove; //Setting offset relative to the mouse motion
         }
     }
-
-    private void _zoom(int Dir) //_zoom function
+        
+    private void _zoom(int Dir)
     {
-        var NewZoom = Zoom + Zoom * Dir/10; //Setting var newZoom to a new zoom value
+        var NewZoom = Zoom + new Vector2(0.1f, 0.1f) * Dir; //Setting var newZoom to a new zoom value
         if (NewZoom > minZoom && NewZoom < maxZoom) //Checking if zoom is under the threshold
         {
         // interpolating the zoom property

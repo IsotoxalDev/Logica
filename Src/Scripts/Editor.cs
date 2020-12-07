@@ -16,3 +16,13 @@ public class Editor : ViewportContainer
     private void OnEditor() {Global.OnEditor = true;}    
     private void NotOnEditor() {Global.OnEditor = false;}    
 }
+
+
+
+
+
+
+
+
+
+
