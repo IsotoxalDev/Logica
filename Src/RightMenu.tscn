@@ -3,7 +3,7 @@
 [ext_resource path="res://Assets/Righteous-Regular.ttf" type="DynamicFontData" id=1]
 
 [sub_resource type="DynamicFont" id=1]
-size = 26
+size = 34
 use_filter = true
 font_data = ExtResource( 1 )
 
@@ -21,7 +21,7 @@ __meta__ = {
 margin_left = -1.0
 margin_top = 1.0
 margin_right = 370.0
-margin_bottom = 48.0
+margin_bottom = 60.0
 rect_pivot_offset = Vector2( -37.183, 68.1101 )
 custom_fonts/font = SubResource( 1 )
 custom_colors/selection_color = Color( 0.956863, 0.384314, 0.384314, 1 )
@@ -47,8 +47,8 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 53.0
-margin_right = -0.999969
+margin_top = 68.0
+margin_right = -1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

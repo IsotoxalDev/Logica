@@ -3,7 +3,7 @@
 [ext_resource path="res://Assets/Righteous-Regular.ttf" type="DynamicFontData" id=1]
 
 [sub_resource type="DynamicFont" id=1]
-size = 30
+size = 26
 use_filter = true
 font_data = ExtResource( 1 )
 

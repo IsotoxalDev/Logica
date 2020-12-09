@@ -35,4 +35,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+SelectColor = Color( 0, 0, 0, 1 )
+UnSelectColor = Color( 1, 0.996078, 0.996078, 1 )
 [connection signal="resized" from="." to="." method="RectChanged"]

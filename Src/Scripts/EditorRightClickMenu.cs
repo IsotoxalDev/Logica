@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class CanvasRightClickMenu : PopupMenu
+public class EditorRightClickMenu : PopupMenu
 {
     private Global Global; 
     private PackedScene Node; 
@@ -41,28 +41,44 @@ public class CanvasRightClickMenu : PopupMenu
             case 2:
                 DeleteSelected();
                 break;
+            case 3:
+                AutoSort();
+                break;
         }
     }
 
     private void AddNode(bool input = false)
     {
-        ColorRect NewNode = (ColorRect)Node.Instance();
+        IONode NewNode = (IONode)Node.Instance();
         NewNode.SetPosition(-(new Vector2(1550, 1080)/2) * Global.Camera.Zoom +
                             Global.Camera.Offset + MousePos * Global.Camera.Zoom);
+        NewNode.Input = input;
         Global.Nodes.AddChild(NewNode);
     }
 
     private void DeleteSelected()
     {
-        for (int ChildIndex = 0; ChildIndex < Global.Nodes.GetChildCount(); ChildIndex++)
+        for (int ChildIndex = 0; ChildIndex < Global.SelectedNodes.Count; ChildIndex++)
+            Global.SelectedNodes[ChildIndex].QueueFree();
+        Global.Selected = false;
+        Global.RightClickMenu.ChangeItem();
+    }
+
+    private void AutoSort()
+    {
+        Vector2 FirstPosition = new Vector2(100000, 100000);
+        int Input = 0;
+        int Output = 0;
+        Vector2 IODistance = new Vector2(100, 60);
+        for (int ChildIndex = 0; ChildIndex < Global.SelectedNodes.Count; ChildIndex++)
         {
-            IONode Child = (IONode) Global.Nodes.GetChild(ChildIndex);
-            if (Child.Selected)
-            {
-                Child.QueueFree();
-                Global.Selected = false;
-                ChangeItem();
-            }
+            IONode Child = Global.SelectedNodes[ChildIndex];
+            if (FirstPosition == new Vector2(100000, 100000))
+                FirstPosition = Child.GetPosition();
+            Child.SetPosition(Child.Input ? new Vector2(FirstPosition.x, FirstPosition.y + IODistance.y * Input)
+                              : new Vector2(FirstPosition.x + IODistance.x, FirstPosition.y + IODistance.y * Output));
+            Input += Convert.ToInt16(Child.Input);
+            Output += Convert.ToInt16(!Child.Input);
         }
     }
 
