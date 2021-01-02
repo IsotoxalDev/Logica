@@ -19,19 +19,23 @@ public class Select : ColorRect
             selecting = false;
             Hide();
             bool OnNode = false;
-            Vector2 MousePos = GetGlobalMousePosition();
+            Vector2 MousePos = -Global.EditorContainer.RectSize / 2 * Global.Camera.Zoom + Global.Camera.Offset + GetGlobalMousePosition() * Global.Camera.Zoom;
+            Vector2[] MousePos = new Vector2[2];
+            MousePos[0] = -Global.EditorContainer.RectSize / 2 * Global.Camera.Zoom + Global.Camera.Offset + Position * Global.Camera.Zoom;
+            MousePos[1] = -Global.EditorContainer.RectSize / 2 * Global.Camera.Zoom + Global.Camera.Offset + Position * Global.Camera.Zoom + (Size * 40) * Camera.Zoom;
             for (int NodeIndex = 0; NodeIndex < Global.SelectedNodes.Count ; NodeIndex++)
             {
                 IONode node = Global.SelectedNodes[NodeIndex];
-                if (node.RectPosition.x < MousePos.x &&
-                    (node.RectPosition.x + node.RectSize.x) > MousePos.x)
-                {
-                    if (node.RectPosition.y < MousePos.y &&
-                        (node.RectPosition.y + node.RectSize.y) > MousePos.y)
+                GD.Print("Node: " + node.RectPosition, "\nMouse:" + MousePos);
+                    if (node.RectPosition.x < MousePos.x &&
+                        node.RectPosition.x > MousePos.x)
                     {
-                        OnNode = true;
+                        if (node.RectPosition.y < MousePos.y &&
+                            node.RectPosition.y > MousePos.y)
+                        {
+                            OnNode = true;
+                        }
                     }
-                }
             }
             if (!OnNode){
                 Global.Deselect();

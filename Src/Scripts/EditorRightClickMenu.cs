@@ -10,6 +10,7 @@ public class EditorRightClickMenu : PopupMenu
     public override void _Ready()
     {
         Connect("id_pressed", this, "OptionPressed"); 
+        Connect("popup_hide", this, "AboutToHide"); 
 
         AddItem("Add Input", 0); 
         AddItem("Add Output", 1); 
@@ -21,15 +22,20 @@ public class EditorRightClickMenu : PopupMenu
     //Setting Input
     public override void _Input(InputEvent Event)
     {
-        if (Global.OnEditor) 
-            if (Event.IsActionPressed("RightClick"))
+        if (Event.IsActionPressed("RightClick"))
+        {
+            SetPosition(GetGlobalMousePosition()); 
+            Popup_();
+            for (int IONodesIdx = 0; IONodesIdx < Global.Nodes.GetChildren().Count; IONodesIdx++)
             {
-                SetPosition(GetGlobalMousePosition()); 
-                Popup_();
-                MousePos = GetViewport().GetMousePosition(); 
+                ColorRect IONode = (ColorRect) Global.Nodes.GetChild(IONodesIdx);
+                IONode.MouseFilter = Control.MouseFilterEnum.Ignore;
             }
+            MousePos = GetViewport().GetMousePosition(); 
+        }
     }
-    public void OptionPressed(int id) {
+    public void OptionPressed(int id)
+    {
         switch(id)
         {
             case 0:
@@ -47,6 +53,16 @@ public class EditorRightClickMenu : PopupMenu
         }
     }
 
+    public void AboutToHide()
+    {
+        GD.Print("CHANGED");
+        for (int IONodesIdx = 0; IONodesIdx < Global.Nodes.GetChildren().Count; IONodesIdx++)
+        {
+            ColorRect IONode = (ColorRect) Global.Nodes.GetChild(IONodesIdx);
+            IONode.MouseFilter = Control.MouseFilterEnum.Stop;
+        }
+    }
+
     private void AddNode(bool input = false)
     {
         IONode NewNode = (IONode)Node.Instance();
@@ -60,6 +76,7 @@ public class EditorRightClickMenu : PopupMenu
     {
         for (int ChildIndex = 0; ChildIndex < Global.SelectedNodes.Count; ChildIndex++)
             Global.SelectedNodes[ChildIndex].QueueFree();
+        Global.SelectedNodes.Clear();
         Global.Selected = false;
         Global.RightClickMenu.ChangeItem();
     }

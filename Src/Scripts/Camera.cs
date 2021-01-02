@@ -3,59 +3,59 @@ using System; // Including System Namespace
 
 public class Camera : Godot.Camera2D
 {
-    private Tween zoomTween; //Variable for importing zoom tween
+	private Tween zoomTween; //Variable for importing zoom tween
 
-    private bool drag = false; //Variable to check if dragging/panning is allowed
+	private bool drag = false; //Variable to check if dragging/panning is allowed
 
-    private Vector2 minZoom = new Vector2(0.1f, 0.1f); //Minimum threshold for zooming
-    private Vector2 maxZoom = new Vector2(1.5f, 1.5f); //Maximum threshold for zooming
-    private Vector2 minPan = new Vector2(-20000, 20000);
-    private Vector2 maxPan = new Vector2(20000, -20000);
+	private Vector2 minZoom = new Vector2(0.1f, 0.1f); //Minimum threshold for zooming
+	private Vector2 maxZoom = new Vector2(1.5f, 1.5f); //Maximum threshold for zooming
+	private Vector2 minPan = new Vector2(-20000, 20000);
+	private Vector2 maxPan = new Vector2(20000, -20000);
 
-    public override void _Ready()//_Ready function
-    {
-        zoomTween = (Tween) GetNode("zoomTween"); //Getting Node zoomTween
-    }
+	public override void _Ready()//_Ready function
+	{
+		zoomTween = (Tween) GetNode("zoomTween"); //Getting Node zoomTween
+	}
 
-    public override void _Input(InputEvent Event)//_Input function
-    {
+	public override void _Input(InputEvent Event)//_Input function
+	{
 
-        if (Event.IsAction("ZoomIn")) //Checking if action is zoom in
-            _zoom(-1); //Calling the _zoom function
+		if (Event.IsAction("ZoomIn")) //Checking if action is zoom in
+			_zoom(-1); //Calling the _zoom function
 
-        else if (Event.IsAction("ZoomOut")) // Checking if action is zoom out
-            _zoom(1); //Calling the _zoom function
+		else if (Event.IsAction("ZoomOut")) // Checking if action is zoom out
+			_zoom(1); //Calling the _zoom function
 
-        //Checking if space or middle mouse button is pressed
-        if (Event.IsActionPressed("Space") || Event.IsActionPressed("MiddleMouseButton"))
-            drag = true; // If space or middle mouse button pressed then set drag to true
+		//Checking if space or middle mouse button is pressed
+		if (Event.IsActionPressed("Space") || Event.IsActionPressed("MiddleMouseButton"))
+			drag = true; // If space or middle mouse button pressed then set drag to true
 
-        //Checking if space or middle mouse button is released
-        else if (Event.IsActionReleased("Space") || Event.IsActionReleased("MiddleMouseButton"))
-            drag = false; // If space or middle mouse button released then set drag to false
+		//Checking if space or middle mouse button is released
+		else if (Event.IsActionReleased("Space") || Event.IsActionReleased("MiddleMouseButton"))
+			drag = false; // If space or middle mouse button released then set drag to false
 
-        //checking if drag is true and mouse is moving
-        if (drag && Event.GetType() == typeof(InputEventMouseMotion))
-        {
-            //Setting newEvent to event by explicitly convertong it to Input Event Mouse Motion
-            InputEventMouseMotion NewEvent = (InputEventMouseMotion) Event;
-            Vector2 toMove = NewEvent.Relative * Zoom;
-            Vector2 afterOffset = Offset - toMove;
+		//checking if drag is true and mouse is moving
+		if (drag && Event.GetType() == typeof(InputEventMouseMotion))
+		{
+			//Setting newEvent to event by explicitly convertong it to Input Event Mouse Motion
+			InputEventMouseMotion NewEvent = (InputEventMouseMotion) Event;
+			Vector2 toMove = NewEvent.Relative * Zoom;
+			Vector2 afterOffset = Offset - toMove;
 
-            if (afterOffset.x > minPan.x && afterOffset.x < maxPan.x)
-            if (afterOffset.y < minPan.y && afterOffset.y > maxPan.y)
-                Offset -= toMove; //Setting offset relative to the mouse motion
-        }
-    }
-        
-    private void _zoom(int Dir)
-    {
-        var NewZoom = Zoom + new Vector2(0.1f, 0.1f) * Dir; //Setting var newZoom to a new zoom value
-        if (NewZoom > minZoom && NewZoom < maxZoom) //Checking if zoom is under the threshold
-        {
-        // interpolating the zoom property
-        zoomTween.InterpolateProperty(this, "zoom", Zoom, NewZoom, 0.05f, 0, 0);
-        zoomTween.Start(); //starting zoom
-        }
-    }
+			if (afterOffset.x > minPan.x && afterOffset.x < maxPan.x)
+			if (afterOffset.y < minPan.y && afterOffset.y > maxPan.y)
+				Offset -= toMove; //Setting offset relative to the mouse motion
+		}
+	}
+
+	private void _zoom(int Dir)
+	{
+		var NewZoom = Zoom + new Vector2(0.1f, 0.1f) * Dir; //Setting var newZoom to a new zoom value
+		if (NewZoom > minZoom && NewZoom < maxZoom) //Checking if zoom is under the threshold
+		{
+		// interpolating the zoom property
+		zoomTween.InterpolateProperty(this, "zoom", Zoom, NewZoom, 0.05f, 0, 0);
+		zoomTween.Start(); //starting zoom
+		}
+	}
 }

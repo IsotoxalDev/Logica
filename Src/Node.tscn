@@ -37,4 +37,3 @@ __meta__ = {
 }
 SelectColor = Color( 0, 0, 0, 1 )
 UnSelectColor = Color( 1, 0.996078, 0.996078, 1 )
-[connection signal="resized" from="." to="." method="RectChanged"]

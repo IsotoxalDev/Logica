@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class Global : Node
 {
-    public bool OnEditor = false;
     public bool Selected = false;
+    public bool OnNodeClick = false;
     public List<IONode> SelectedNodes = new List<IONode>();
 
     // Nodes
@@ -38,18 +38,28 @@ public class Global : Node
         return null;
     }
 
+    public void Deselect()
+    {
+        if (!RightClickMenu.Visible && Selected)
+        {
+            Selected = false;
+
+            for (int ChildIndex = 0; ChildIndex < SelectedNodes.Count; ChildIndex++)
+                SelectedNodes[ChildIndex].Modulate = SelectedNodes[ChildIndex].UnSelectColor;
+
+            SelectedNodes.Clear();
+        }
+    }
+
     public void Select(Vector2 Size, Vector2 Position)
     {
         Vector2[] SelectArea = new Vector2[2];
         SelectArea[0] = -EditorContainer.RectSize / 2 * Camera.Zoom + Camera.Offset + Position * Camera.Zoom;
         SelectArea[1] = -EditorContainer.RectSize / 2 * Camera.Zoom + Camera.Offset + Position * Camera.Zoom + (Size * 40) * Camera.Zoom;
-        SelectedNodes.Clear();
-        Selected = false;
         for (int ChildIndex = 0; ChildIndex < Nodes.GetChildCount(); ChildIndex++)
         {
             var Child = (IONode)Nodes.GetChild(ChildIndex);
             var Big = SelectArea[0] < SelectArea[1];
-            Child.Modulate = Child.UnSelectColor;
             if (Child.RectPosition.x < SelectArea[Convert.ToInt16(Big)].x &&
                 Child.RectPosition.x > SelectArea[Convert.ToInt16(!Big)].x)
             {
